@@ -13,6 +13,7 @@
 		</style>
 	</head>
 	<body>
+	
 		<?php $numbers= array(
 			"0",
 			"1",
@@ -26,14 +27,11 @@
 			"9",
 			);
 	 	?>
-	 	<?php
-			echo $_GET['uint'];
-			$maru = array($_GET['uint']=>"○");
-			$numbers = array_replace($numbers,$maru);
-		?>
 		
 	<?php
 	$fp = fopen("date.txt","r");
+	
+	/*○×交互に出す*/
 	while(($buff=fgets($fp))!= false)
 	{
 		$a++;
@@ -55,7 +53,6 @@
 	fclose($fp);
 	?>
 		
-		
 		<form action="get.php" id="select">
 			<button type="submit" name="uint" value="1"><?php echo $numbers["1"]; ?></button>
 			<button type="submit" name="uint" value="2"><?php echo $numbers["2"]; ?></button>
@@ -67,6 +64,9 @@
 			<button type="submit" name="uint" value="8"><?php echo $numbers["8"]; ?></button>
 			<button type="submit" name="uint" value="9"><?php echo $numbers["9"]; ?></button><br>
 		</form>
+		
+		<reset>
+		リセットする時は date.txtを空にしてから リロードすること
+		</reset>
 	</body>
-	
 </html>
