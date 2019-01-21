@@ -2,7 +2,7 @@
 	<head>
 		<title>○× Game</title>
 		<style>
-		form{
+		#select{
 			text-align: center
 		}
 		button{
@@ -13,16 +13,60 @@
 		</style>
 	</head>
 	<body>
-		<form action="get.php">
-			<button type="submit" name="uint" value="1"><div id=1>1</div></button>
-			<button type="submit" name="uint" value="2"><div id=1>2</div></button>
-			<button type="submit" name="uint" value="3"><div id=1>3</div></button><br>
-			<button type="submit" name="uint" value="4"><div id=1>4</div></button>
-			<button type="submit" name="uint" value="5"><div id=1>5</div></button>
-			<button type="submit" name="uint" value="6"><div id=1>6</div></button><br>
-			<button type="submit" name="uint" value="7"><div id=1>7</div></button>
-			<button type="submit" name="uint" value="8"><div id=1>8</div></button>
-			<button type="submit" name="uint" value="9"><div id=1>9</div></button><br>
+		<?php $numbers= array(
+			"0",
+			"1",
+			"2",
+			"3",
+			"4",
+			"5",
+			"6",
+			"7",
+			"8",
+			"9",
+			);
+	 	?>
+	 	<?php
+			echo $_GET['uint'];
+			$maru = array($_GET['uint']=>"○");
+			$numbers = array_replace($numbers,$maru);
+		?>
+		
+	<?php
+	$fp = fopen("date.txt","r");
+	while(($buff=fgets($fp))!= false)
+	{
+		$a++;
+		if($a%2==1)
+		{
+		$line = explode("\n",$buff);
+		echo $line[0];
+		$maru = array($line[0]=>"○");
+		$numbers = array_replace($numbers,$maru);
+		}
+		else
+		{
+		$line = explode("\n",$buff);
+		echo $line[0];
+		$batu = array($line[0]=>"×");
+		$numbers = array_replace($numbers,$batu);
+		}
+	}
+	fclose($fp);
+	?>
+		
+		
+		<form action="get.php" id="select">
+			<button type="submit" name="uint" value="1"><?php echo $numbers["1"]; ?></button>
+			<button type="submit" name="uint" value="2"><?php echo $numbers["2"]; ?></button>
+			<button type="submit" name="uint" value="3"><?php echo $numbers["3"]; ?></button><br>
+			<button type="submit" name="uint" value="4"><?php echo $numbers["4"]; ?></button>
+			<button type="submit" name="uint" value="5"><?php echo $numbers["5"]; ?></button>
+			<button type="submit" name="uint" value="6"><?php echo $numbers["6"]; ?></button><br>
+			<button type="submit" name="uint" value="7"><?php echo $numbers["7"]; ?></button>
+			<button type="submit" name="uint" value="8"><?php echo $numbers["8"]; ?></button>
+			<button type="submit" name="uint" value="9"><?php echo $numbers["9"]; ?></button><br>
 		</form>
 	</body>
+	
 </html>
